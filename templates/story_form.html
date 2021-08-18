@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Madlibs</h1>
+
+<form action="/" method="post">
+    <select name="story_id">
+        {% for story in stories %}
+           <option value="{{story.storyId}}">{{story.title}} </option> 
+        {% endfor %}
+    </select>
+    <button class="choose">Choose</button>
+</form>
+
+{% if story %}
+<form id="madlibs-form" action="/story">
+    {% for prompt in story.prompts %}
+
+        <div class="row">
+            <div class="col-25">
+                <label>{{ prompt.capitalize() }}:</label>
+            </div>
+            <div class="col-75">
+                <input type="text" name="{{ prompt }}">
+            </div> 
+        </div>
+        
+    {% endfor %}
+    <input type="hidden" name="story_id" value="{{ story.storyId }}">
+    <div class="row">
+        <button class="btn">Submit</button>
+    </div>
+
+</form>
+{% endif %}
+
+{% endblock %}
+
