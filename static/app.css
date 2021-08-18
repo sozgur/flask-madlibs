@@ -1,9 +1,10 @@
 /* Form css */
-#madlibs-form {
+.madlibs-form {
     margin-left: -16%;
 }
 
-input[type="text"] {
+input[type="text"],
+textarea {
     width: 50%;
     padding: 12px;
     border: 1px solid #ccc;

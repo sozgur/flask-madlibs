@@ -13,7 +13,7 @@
 </form>
 
 {% if story %}
-<form id="madlibs-form" action="/story">
+<form class="madlibs-form" action="/story">
     {% for prompt in story.prompts %}
 
         <div class="row">
@@ -33,6 +33,47 @@
 
 </form>
 {% endif %}
+
+<h2>Add New Story Template</h2>
+
+<form class="madlibs-form" action="/story/new" method="POST">
+    <div class="row">
+        <div class="col-25">
+            <label>Title</label>
+        </div>
+        <div class="col-75">
+            <input type="text" name="title">
+        </div> 
+    </div>
+        <div class="row">
+        <div class="col-25">
+            <label>Template</label>
+        </div>
+        <div class="col-75">
+            <textarea name="template" placeholder="Write template with your chose each {world} cover with brakets.. 
+            Ex.  'A woman, wanting to surprise her {noun}.'" style="height:200px"></textarea>
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col-25">
+            <label>Choose Words</label>
+        </div> 
+        <div class="col-25">
+            <select name="words" multiple>
+                <option value="place">place</option>
+                <option value="noun">noun</option>
+                <option value="verb">verb</option>
+                <option value="adjective">adjective</option>
+                <option value="plural_noun">plural_noun</option>
+                <option value="time">time</option>
+            </select>
+        </div> 
+    </div>
+    <div class="row">
+        <button class="btn">Create</button>
+    </div>
+</form>
+
 
 
 {% endblock %}

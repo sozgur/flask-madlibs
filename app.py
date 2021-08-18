@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 from flask_debugtoolbar import DebugToolbarExtension
 from stories import stories, StoryList
 
@@ -32,6 +32,16 @@ def story():
     return render_template('story.html', story=story_text)
 
 
+@app.route("/story/new", methods=['POST'])
+def create_story():
+    """ Create new story """
+    title = request.form["title"]
+    words = request.form.getlist('words')
+    template = request.form["template"]
+
+    StoryList.createStory(title, words, template)
+
+    return redirect("/")
 
 
 
