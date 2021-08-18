@@ -36,23 +36,23 @@ class Story:
         return text
 
 class StoryList:
+    stories = OrderedDict()
 
-    def __init__(self):
-        self.stories = OrderedDict()
-
-    def createStory(self, title, words_list, text):
-        keys = list(self.stories.keys())
+    # def __init__(self):
+    #     self.stories = OrderedDict()
+    @classmethod
+    def createStory(cls, title, words_list, text):
+        keys = list(cls.stories.keys())
         key = keys[-1] + 1 if len(keys) > 0 else 1
 
         story = Story(key, title, words_list, text)
-        self.stories[key] = story
+        cls.stories[key] = story
 
 # Here's a story to get you started
-s = StoryList()
-s.createStory("Long Ago", ["place", "noun", "verb", "adjective", "plural_noun"],
+
+StoryList.createStory("Long Ago", ["place", "noun", "verb", "adjective", "plural_noun"],
     """Once upon a time in a long-ago {place}, there lived a
        large {adjective} {noun}. It loved to {verb} {plural_noun}.""")
+StoryList.createStory("Unbelievable",["noun", "adverb", "plural_noun"], """ A woman, wanting to surprise her {noun} for {adverb} {plural_noun}, got him something completely unbelievable.""")
 
-s.createStory("Unbelievable",["noun", "adverb", "plural_noun"], """ A woman, wanting to surprise her {noun} for {adverb} {plural_noun}, got him something completely unbelievable.""")
-
-stories = s.stories
+stories = StoryList.stories

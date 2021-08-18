@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 from flask_debugtoolbar import DebugToolbarExtension
-from stories import stories
+from stories import stories, StoryList
 
 
 app = Flask(__name__)
@@ -30,4 +30,8 @@ def story():
     story_text = story.generate(request.args)
 
     return render_template('story.html', story=story_text)
+
+
+
+
 
